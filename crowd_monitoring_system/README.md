@@ -2,6 +2,9 @@
 
 A robust, real-time computer vision and machine learning platform designed to monitor crowd density from live video feeds, identify immediate safety thresholds, and forecast future density trends to preemptively highlight high-risk situations.
 
+**GitHub Repository:** [https://github.com/m-shankar-m/crowd_monitoring_system.git](https://github.com/m-shankar-m/crowd_monitoring_system.git)
+
+
 ## 🚀 Key Features
 
 *   **Real-Time Population Tracking:** Utilizes a highly calibrated `YOLOv8 Medium` detection model to classify and track individual people with precision bounding boxes, even in dense overlapping scenarios.
