@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Sensitive information
+.env
+
+# Large weight files
+*.pt
+*.pth
+*.weights
+*.h5
+
+# Application logs
+logs/
+*.log
+
+# Streamlit
+.streamlit/
+
+# Node (in case there's frontend)
+node_modules/
+
+# Data
+data/
+sample_video.mp4
