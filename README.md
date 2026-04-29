@@ -3,7 +3,7 @@
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![YOLOv8](https://img.shields.io/badge/Computer_Vision-YOLOv8-006400?style=for-the-badge&logo=ultralytics&logoColor=white)](https://ultralytics.com/)
-[![TensorFlow](https://img.shields.io/badge/ML-TensorFlow_LSTM-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
+[![LSTM](https://img.shields.io/badge/ML-TensorFlow_LSTM-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
 [![Prophet](https://img.shields.io/badge/Forecasting-Facebook_Prophet-257BD1?style=for-the-badge&logo=facebook&logoColor=white)](https://facebook.github.io/prophet/)
 
 A professional-grade, real-time intelligence platform that combines **Computer Vision** and **Predictive Analytics** to monitor crowd density, ensure safety compliance, and forecast future risks.
