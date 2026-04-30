@@ -2,14 +2,14 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Web Framework & Server
-fastapi
-uvicorn
-python-multipart
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
 
 # Machine Learning & Computer Vision
 torch==2.0.0
-ultralytics
-opencv-python-headless
+ultralytics==8.0.207
+opencv-python-headless==4.8.1.78
 
 # Deep Learning & Time Series
 tensorflow==2.13.0
@@ -19,6 +19,5 @@ numpy>=1.21.0
 scikit-learn>=1.0.0
 
 # Database Connection
-SQLAlchemy
-psycopg2-binary
-Dockerfile
+SQLAlchemy==2.0.23
+psycopg2-binary==2.9.9
