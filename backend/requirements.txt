@@ -1,3 +1,6 @@
+# Tell pip to find the smaller CPU-only versions of PyTorch first
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 # Web Framework & Server
 fastapi
 uvicorn
