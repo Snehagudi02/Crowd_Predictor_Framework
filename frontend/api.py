@@ -1,32 +1,37 @@
 import requests
 import os
 
-# Grab the Render URL from Streamlit Secrets. 
-# If it can't find it (like when you are testing on your laptop), it defaults to localhost.
-BASE_URL = os.environ.get("FASTAPI_URL", "http://127.0.0.1:8000")
+# Environment-Aware Routing for Dual-Cloud Deployment
+# Defaults to HuggingFace Spaces URL pattern: https://<username>-<space-name>.hf.space
+# For local development: export FASTAPI_URL="http://127.0.0.1:7860"
+FASTAPI_BASE_URL = os.environ.get("FASTAPI_URL", "https://<your-hf-space-username>-<your-space-name>.hf.space")
 
 def upload_frame(file_bytes, zone_name=None, max_capacity=25):
+    """Upload frame to FastAPI backend for crowd detection."""
     try:
         files = {"file": ("frame.jpg", file_bytes, "image/jpeg")}
         params = {"zone_name": zone_name, "max_capacity": max_capacity}
-        resp = requests.post(f"{BASE_URL}/live-density", files=files, params=params, timeout=10)
+        resp = requests.post(f"{FASTAPI_BASE_URL}/live-density", files=files, params=params, timeout=10)
         return resp.json() if resp.status_code == 200 else None
-    except:
+    except Exception as e:
+        print(f"Frame upload error: {e}")
         return None
 
 def train_model():
+    """Trigger model training on FastAPI backend."""
     try:
-        # Increased timeout to 120 seconds to give Render enough time to train the models
-        # and account for Render's "cold start" delay on free tiers!
-        resp = requests.post(f"{BASE_URL}/train", timeout=120)
+        # Increased timeout to accommodate HF Spaces cold starts
+        resp = requests.post(f"{FASTAPI_BASE_URL}/train", timeout=120)
         return resp.json()
     except Exception as e:
-        print(f"Training API Error: {e}") # This will print exactly why it failed in Streamlit's logs
+        print(f"Training API Error: {e}")
         return None
 
 def get_forecast():
+    """Fetch predictive risk forecast from FastAPI backend."""
     try:
-        resp = requests.get(f"{BASE_URL}/predict-risk", timeout=10)
+        resp = requests.get(f"{FASTAPI_BASE_URL}/predict-risk", timeout=10)
         return resp.json()
-    except:
+    except Exception as e:
+        print(f"Forecast API Error: {e}")
         return None
