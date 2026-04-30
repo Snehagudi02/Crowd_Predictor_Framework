@@ -10,28 +10,12 @@ import numpy as np
 import plotly.graph_objects as go
 import pandas as pd
 from api import upload_frame, get_forecast, train_model
-import subprocess
-import socket
 
-# Automatically start the backend if port 8000 is not in use (e.g. on Streamlit Cloud)
-def is_port_in_use(port):
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        return s.connect_ex(('127.0.0.1', port)) == 0
-
-if 'backend_started' not in st.session_state:
-    if not is_port_in_use(8000):
-        # Start FastAPI backend process with correct working directory and secrets
-        backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
-        
-        # Inject Streamlit secrets so the backend can read email credentials
-        env_vars = os.environ.copy()
-        if hasattr(st, "secrets"):
-            for k, v in st.secrets.items():
-                env_vars[k] = str(v)
-                
-        subprocess.Popen([sys.executable, "-m", "uvicorn", "src.backend.main:app", "--port", "8000"], cwd=backend_dir, env=env_vars)
-        time.sleep(3) # Wait for backend to spin up
-    st.session_state.backend_started = True
+# =====================================================
+# NOTE: Backend is deployed separately on Render.
+# Streamlit Cloud cannot spawn subprocesses.
+# All API calls use FASTAPI_URL environment variable.
+# =====================================================
 
 st.set_page_config(page_title="Crowd Predictor Framework", layout="wide", initial_sidebar_state="collapsed")
 
@@ -120,7 +104,7 @@ st.markdown("""
     .zone-box:hover {
         border-left: 4px solid #7DD3FC;
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(56, 189, 248, 0.15);
+        box-shadow: 0 8px 25px rgba(56,189,248,0.15);
     }
     .zone-title { font-weight: 500; font-size: 13px; color: #94A3B8; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
     .zone-count { font-size: 28px; font-family: 'Outfit', sans-serif; color: #FFFFFF; font-weight: 600; margin-bottom: 8px; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
@@ -212,7 +196,7 @@ with c1:
     st.markdown("<div class='section-title'><span class='section-badge'>Team 2</span> Crowd count over time — prediction</div>", unsafe_allow_html=True)
     graph_ph = st.empty()
     
-    st.markdown("<div class='section-title'><span class='section-badge'>Team 2</span> Video detection — simulated frames</div>", unsafe_allow_html=True)
+st.markdown("<div class='section-title'><span class='section-badge'>Team 2</span> Video detection — simulated frames</div>", unsafe_allow_html=True)
     v1, v2 = st.columns(2)
     v3, v4 = st.columns(2)
     vid_a = v1.empty()
@@ -225,12 +209,12 @@ with c2:
     st.markdown("<div class='section-title'><span class='section-badge'>Team 1</span> Zone snapshot</div>", unsafe_allow_html=True)
     zone_ph = st.empty()
     
-    st.markdown("<div class='section-title'><span class='section-badge'>Team 6</span> Alert feed</div>", unsafe_allow_html=True)
+st.markdown("<div class='section-title'><span class='section-badge'>Team 6</span> Alert feed</div>", unsafe_allow_html=True)
     alert_ph = st.empty()
 
 def update_zone_snapshots(counts, caps):
     # Maximum Capacities passed from sidebar
-    html = "<div style='display: grid; grid-template-columns: 1fr 1fr; gap: 10px;'>"
+    html = "<div style='display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">"
     names = ["Zone A/1", "Zone B/2", "Zone C/3", "Zone D/4"]
     
     for i in range(4):
@@ -291,7 +275,8 @@ def get_zone_forecast(history):
     if not history: return None
     import requests
     try:
-        r = requests.post("http://127.0.0.1:8000/predict-zone", json={"periods": 15, "history_counts": history[-100:]})
+        fastapi_url = os.environ.get("FASTAPI_URL", "http://127.0.0.1:8000")
+        r = requests.post(f"{fastapi_url}/predict-zone", json={"periods": 15, "history_counts": history[-100:]})
         return r.json()
     except Exception:
         return None
@@ -460,7 +445,7 @@ if st.session_state.get('running', False) and input_source != "None":
                         for t in tracks:
                             x1, y1, x2, y2 = t['bbox']
                             cv2.rectangle(frame_rgb, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
-                            
+                             
                     add_footer(frame_rgb, f"{zones[i]} - {zone_counts[i]} detected")
                     frames[i] = frame_rgb
                     
