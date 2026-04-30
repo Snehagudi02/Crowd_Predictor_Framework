@@ -9,7 +9,7 @@ import cv2
 import numpy as np
 import plotly.graph_objects as go
 import pandas as pd
-from src.frontend.api import upload_frame, get_forecast, train_model
+from api import upload_frame, get_forecast, train_model
 import subprocess
 import socket
 
