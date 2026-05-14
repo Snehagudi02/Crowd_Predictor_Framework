@@ -44,7 +44,7 @@ A professional-grade, real-time intelligence platform that combines **Computer V
 ## 📁 Project Structure
 
 ```bash
-crowd_monitoring_system/
+Crowd_Predictor_Framework/
 ├── backend/                # FastAPI Application
 │   ├── app/                # Core API logic (Routes, Services, Models)
 │   └── requirements.txt    # Backend dependencies
@@ -72,8 +72,8 @@ crowd_monitoring_system/
 ### 2. Installation
 ```bash
 # Clone the repository
-git clone https://github.com/m-shankar-m/crowd_monitoring_system.git
-cd crowd_monitoring_system
+git clone https://github.com/Snehagudi02/Crowd_Predictor_Framework.git
+cd Crowd_Predictor_Framework
 
 # Install dependencies (Unified or per service)
 pip install -r backend/requirements.txt

@@ -1,4 +1,4 @@
-path: D:/VS Code/crowd prodiction/crowd_monitoring_system/data/yolo_dataset
+path: D:/VS Code/crowd prodiction/crowd_predictor_framework/data/yolo_dataset
 train: images/train
 val: images/val
 

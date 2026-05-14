@@ -79,7 +79,7 @@ notebook = {
     "nbformat_minor": 4
 }
 
-out_path = "d:/VS Code/crowd prodiction/crowd_monitoring_system/notebooks/train_yolo.ipynb"
+out_path = "d:/VS Code/crowd prodiction/crowd_predictor_framework/notebooks/train_yolo.ipynb"
 with open(out_path, "w") as f:
     json.dump(notebook, f, indent=2)
 
