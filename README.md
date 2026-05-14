@@ -73,14 +73,4 @@ Crowd_Predictor_Framework/
 └── README.md                # Project documentation (you are here)
 ```
 
-## Contributing
 
-Contributions are welcome! Please open an [issue](https://github.com/Snehagudi02/Crowd_Predictor_Framework/issues) or submit a pull request for improvements, bug fixes, or new features.
-
-## License
-
-Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information.
-
----
-
-*Crowd Predictor Framework* &copy; 2026 Snehagudi02
