@@ -1,12 +1,5 @@
-ultralytics
-opencv-python
-pandas
-prophet
-fastapi
-uvicorn
 streamlit
-plotly
-streamlit-webrtc
-python-multipart
 requests
-python-dotenv
+Pillow
+opencv-python-headless
+plotly

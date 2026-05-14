@@ -1,0 +1,6 @@
+path: D:/VS Code/crowd prodiction/crowd_monitoring_system/data/yolo_dataset
+train: images/train
+val: images/val
+
+names:
+  0: person
